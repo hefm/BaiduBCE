@@ -1,0 +1,28 @@
+{
+    "name": "hfm/baidu-bce",
+    "description": "image search, include baidu ai image search",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Hfm\\BaiduBce\\": "src/"
+        },
+        "files": [
+            "lib/AipBase.php",
+            "AipBodyAnalysis.php",
+            "AipContentCensor.php",
+            "AipFace.php",
+            "AipImageClassify.php",
+            "AipImageSearch.php",
+            "AipKg.php",
+            "AipNlp.php",
+            "AipOcr.php",
+            "AipSpeech.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "恰",
+            "email": "392699146@qq.com"
+        }
+    ]
+}
