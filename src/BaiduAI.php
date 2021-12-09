@@ -2,6 +2,9 @@
 
 namespace Hfm\BaiduBce;
 
+use Hfm\BaiduBce\Baidu\AipHttpClient;
+use Hfm\BaiduBce\Baidu\AipImageSearch;
+
 class BaiduAI implements AI
 {
   const BAIDU_TOKEN_API = 'https://aip.baidubce.com/oauth/2.0/token';
@@ -32,8 +35,8 @@ class BaiduAI implements AI
     $client = new AipHttpClient();
     $rs = $client->post(BaiduAI::BAIDU_TOKEN_API, [
       'grant_type'        => 'client_credentials',
-      'client_id'         => $this->config['app_key'],
-      'client_secret'     => $this->config['app_secret'],
+      'client_id'         => $this->app_key,
+      'client_secret'     => $this->app_secret,
     ]);
     if ($rs['code'] ===  200) {
       $data = json_decode($rs['content'], true);
@@ -77,13 +80,13 @@ class BaiduAI implements AI
   /**
    * 解析图片
    * @param string $image_url
-   * @return false|string|void
+   * @return false|string
    */
   public function getImageContent(string $image_url = '') {
     try {
       return file_get_contents($image_url);
     } catch (\Exception $exception) {
-      var_dump($exception);
+      return false;
     }
   }
 }

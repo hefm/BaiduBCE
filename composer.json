@@ -5,19 +5,7 @@
     "autoload": {
         "psr-4": {
             "Hfm\\BaiduBce\\": "src/"
-        },
-        "files": [
-            "lib/AipBase.php",
-            "AipBodyAnalysis.php",
-            "AipContentCensor.php",
-            "AipFace.php",
-            "AipImageClassify.php",
-            "AipImageSearch.php",
-            "AipKg.php",
-            "AipNlp.php",
-            "AipOcr.php",
-            "AipSpeech.php"
-        ]
+        }
     },
     "authors": [
         {
