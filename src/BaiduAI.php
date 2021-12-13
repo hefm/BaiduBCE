@@ -56,8 +56,12 @@ class BaiduAI implements AI
     $client = new AipImageSearch($this->app_id, $this->app_key, $this->app_secret);
     $image_content = $this->getImageContent($image_url);
     $rs = $client->similarAdd($image_content, [ 'brief' => json_encode($params) ]);
-    if (isset($rs['log_id']) && $rs['log_id'])
-      return $rs['cont_sign'];
+    if (isset($rs['log_id']) && $rs['log_id']) {
+      if (!isset($rs['cont_sign'])) {
+        $this->fail(json_encode($rs, JSON_UNESCAPED_UNICODE));
+      }
+      return true;
+    }
     else
       return false;
   }
@@ -88,5 +92,15 @@ class BaiduAI implements AI
     } catch (\Exception $exception) {
       return false;
     }
+  }
+
+  /**
+   * 错误日志
+   * @param $err
+   */
+  protected function fail($err) {
+    $fp = fopen('ai.log', 'a+');
+    fwrite($fp, $err."\n");
+    fclose($fp);
   }
 }
